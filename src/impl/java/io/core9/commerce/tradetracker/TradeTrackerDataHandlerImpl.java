@@ -40,6 +40,7 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 				Map<String,Object> result = new HashMap<String, Object>();
 				if(session.getAttribute(TradeTrackerDataHandlerConfig.SESSION_KEY) != null) {
 					result.put(TradeTrackerDataHandlerConfig.SESSION_KEY, true);
+					result.put("config", options);
 				} else {
 					result.put(TradeTrackerDataHandlerConfig.SESSION_KEY, false);
 				}
@@ -50,7 +51,6 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 			@SuppressWarnings("unchecked")
 			@Override
 			public T getOptions() {
-				// TODO Auto-generated method stub
 				return (T) options;
 			}
 			
