@@ -64,13 +64,15 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 				Map<String,Object> result = new HashMap<String, Object>();
 				Session session = auth.getUser(req).getSession();
 				if(config.isRedirectWidget(req)) {
-					session.setAttribute(TradeTrackerDataHandlerConfig.SESSION_KEY, true);
+					session.setAttribute(SESSION_KEY, true);
 					redirect(req, session);
-				} else if(session.getAttribute(TradeTrackerDataHandlerConfig.SESSION_KEY) != null) {
-					result.put(TradeTrackerDataHandlerConfig.SESSION_KEY, true);
-					result.put("config", options);
+				} else if(session.getAttribute(SESSION_KEY) != null) {
+					result.put(SESSION_KEY, true);
+					result.put("campaignID", session.getAttribute(SESSION_KEY));
+					//TODO Not implemented
+					result.put("productID", session.getAttribute(SESSION_KEY));
 				} else {
-					result.put(TradeTrackerDataHandlerConfig.SESSION_KEY, false);
+					result.put(SESSION_KEY, false);
 				}
 				return new HashMap<String, Object>();
 			}
@@ -144,7 +146,7 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 
 						// Set session data.
 						session.setAttribute(cookieName, cookieValue);
-						session.setAttribute(TradeTrackerDataHandlerConfig.SESSION_KEY, cookieName);
+						session.setAttribute(SESSION_KEY, campaignID);
 
 						// Set track-back URL.
 						String trackBackURL = "http://tc.tradetracker.net/?c=" + campaignID + "&m=" + materialID
@@ -182,3 +184,4 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 		}		
 	}	
 }
+

@@ -6,8 +6,6 @@ import io.core9.plugin.widgets.datahandler.DataHandlerGlobal;
 
 public class TradeTrackerDataHandlerConfig extends DataHandlerDefaultConfig {
 
-	public static final String SESSION_KEY = "viaTradeTracker";
-
 	private String campaignID = "";
 	private String materialID = "";
 	private String affiliateID = "";

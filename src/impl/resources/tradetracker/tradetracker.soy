@@ -2,16 +2,16 @@
 
 /**
  * @param viaTradeTracker
- * @param order
- * @param config
+ * @param productID
+ * @param campaignID
  */
 {template .tradetracker}
 {if viaTradeTracker}
 <script type="text/javascript">
 	var ttConversionOptions = {lb}
   		type: 'sales',
-  		campaignID: '{$config.campaignID}',
-  		productID: '{$config.productID}',
+  		campaignID: '{$campaignID}',
+  		productID: '{$productID}',
   		transactionID: '{$order._id}',
   		transactionAmount: '{$order.total}',
   		quantity: '1',
@@ -28,7 +28,7 @@
 	{rb})(ttConversionOptions);
 </script>
 <noscript>
-	<img src="//ts.tradetracker.net/?cid={$config.campaignID}&amp;pid={$config.productID}&amp;tid={$order._id}&amp;tam={$order.total}&amp;data=&amp;qty=1&amp;eml=&amp;descrMerchant=&amp;descrAffiliate=&amp;event=sales&amp;currency=EUR" alt="" />
+	<img src="//ts.tradetracker.net/?cid={$campaignID}&amp;pid={$productID}&amp;tid={$order._id}&amp;tam={$order.total}&amp;data=&amp;qty=1&amp;eml=&amp;descrMerchant=&amp;descrAffiliate=&amp;event=sales&amp;currency=EUR" alt="" />
 </noscript>
 {/if}
 {/template}
