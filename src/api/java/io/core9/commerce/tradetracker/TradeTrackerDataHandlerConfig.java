@@ -82,9 +82,10 @@ public class TradeTrackerDataHandlerConfig extends DataHandlerDefaultConfig {
 	 */
 	public Boolean isRedirectWidget(Request request) {
 		if(redirectWidget.isGlobal()) {
-			return request.getContext(this.getComponentName() + ".redirectWidget", redirectWidget.getValue());
+			String strValue = request.getContext(this.getComponentName() + ".redirectWidget");
+			return strValue != null && strValue.equals("true");
 		}
-		return redirectWidget.getValue();
+		return redirectWidget.getValue().equals("true");
 	}
 
 	public void setRedirectWidget(DataHandlerGlobal<Boolean> redirectWidget) {

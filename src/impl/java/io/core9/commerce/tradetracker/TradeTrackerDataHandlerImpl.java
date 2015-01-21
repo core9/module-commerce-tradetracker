@@ -9,16 +9,12 @@ import io.core9.plugin.template.closure.ClosureTemplateEngine;
 import io.core9.plugin.widgets.datahandler.DataHandler;
 import io.core9.plugin.widgets.datahandler.DataHandlerFactoryConfig;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.google.common.io.CharStreams;
 
 import net.xeoh.plugins.base.annotations.PluginImplementation;
 import net.xeoh.plugins.base.annotations.injections.InjectPlugin;
@@ -74,7 +70,7 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 				} else {
 					result.put(SESSION_KEY, false);
 				}
-				return new HashMap<String, Object>();
+				return result;
 			}
 
 			/**
@@ -170,18 +166,5 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 			
 		};
 	}
-
-	/**
-	 * Adds the TradeTracker script to the template engine
-	 */
-	@Override
-	public void execute() {
-		try {
-			engine.addString("io.core9.commerce.tracking.tradetracker", 
-					CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/tradetracker/tradetracker.soy"))));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-	}	
 }
 
