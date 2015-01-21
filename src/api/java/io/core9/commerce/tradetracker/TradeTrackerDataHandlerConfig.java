@@ -12,6 +12,8 @@ public class TradeTrackerDataHandlerConfig extends DataHandlerDefaultConfig {
 	private String redirectURL = "";
 	private String reference = "";
 	private String cookieDomain = "";
+	private boolean redirectWidget;
+	
 	private int cookieDays = 365;
 
 	public String getCampaignID() {
@@ -68,5 +70,13 @@ public class TradeTrackerDataHandlerConfig extends DataHandlerDefaultConfig {
 
 	public void setCookieDays(int cookieDays) {
 		this.cookieDays = cookieDays;
+	}
+
+	public boolean isRedirectWidget() {
+		return redirectWidget;
+	}
+
+	public void setRedirectWidget(boolean redirectWidget) {
+		this.redirectWidget = redirectWidget;
 	}
 }
