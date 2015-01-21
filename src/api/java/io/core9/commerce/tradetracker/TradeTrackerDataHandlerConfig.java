@@ -1,6 +1,8 @@
 package io.core9.commerce.tradetracker;
 
+import io.core9.plugin.server.request.Request;
 import io.core9.plugin.widgets.datahandler.DataHandlerDefaultConfig;
+import io.core9.plugin.widgets.datahandler.DataHandlerGlobal;
 
 public class TradeTrackerDataHandlerConfig extends DataHandlerDefaultConfig {
 
@@ -12,8 +14,7 @@ public class TradeTrackerDataHandlerConfig extends DataHandlerDefaultConfig {
 	private String redirectURL = "";
 	private String reference = "";
 	private String cookieDomain = "";
-	private boolean redirectWidget;
-	
+	private DataHandlerGlobal<Boolean> redirectWidget;
 	private int cookieDays = 365;
 
 	public String getCampaignID() {
@@ -72,11 +73,23 @@ public class TradeTrackerDataHandlerConfig extends DataHandlerDefaultConfig {
 		this.cookieDays = cookieDays;
 	}
 
-	public boolean isRedirectWidget() {
+	public DataHandlerGlobal<Boolean> getRedirectWidget() {
 		return redirectWidget;
 	}
+	
+	/**
+	 * Returns whether the request hit a redirect widget or normal widget
+	 * @param request
+	 * @return
+	 */
+	public Boolean isRedirectWidget(Request request) {
+		if(redirectWidget.isGlobal()) {
+			return request.getContext(this.getComponentName() + ".redirectWidget", redirectWidget.getValue());
+		}
+		return redirectWidget.getValue();
+	}
 
-	public void setRedirectWidget(boolean redirectWidget) {
+	public void setRedirectWidget(DataHandlerGlobal<Boolean> redirectWidget) {
 		this.redirectWidget = redirectWidget;
 	}
 }

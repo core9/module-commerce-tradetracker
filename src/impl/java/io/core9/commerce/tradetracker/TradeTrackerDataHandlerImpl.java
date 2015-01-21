@@ -63,7 +63,7 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 			public Map<String, Object> handle(Request req) {
 				Map<String,Object> result = new HashMap<String, Object>();
 				Session session = auth.getUser(req).getSession();
-				if(config.isRedirectWidget()) {
+				if(config.isRedirectWidget(req)) {
 					session.setAttribute(TradeTrackerDataHandlerConfig.SESSION_KEY, true);
 					redirect(req, session);
 				} else if(session.getAttribute(TradeTrackerDataHandlerConfig.SESSION_KEY) != null) {
