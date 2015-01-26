@@ -67,6 +67,7 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 					result.put("campaignID", session.getAttribute(SESSION_KEY));
 					//TODO Not implemented
 					result.put("productID", session.getAttribute(SESSION_KEY));
+					session.removeAttribute(SESSION_KEY);
 				} else {
 					result.put(SESSION_KEY, false);
 				}
