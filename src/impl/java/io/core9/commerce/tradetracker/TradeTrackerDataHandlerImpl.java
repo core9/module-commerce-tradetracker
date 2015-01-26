@@ -68,6 +68,9 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 					//TODO Not implemented
 					result.put("productID", session.getAttribute(SESSION_KEY));
 					session.removeAttribute(SESSION_KEY);
+					if(session.getAttribute(SESSION_COOKIE_NAME) != null) {
+						session.removeAttribute(session.removeAttribute(SESSION_COOKIE_NAME));
+					}
 				} else {
 					result.put(SESSION_KEY, false);
 				}
@@ -144,6 +147,7 @@ public class TradeTrackerDataHandlerImpl<T extends TradeTrackerDataHandlerConfig
 						// Set session data.
 						session.setAttribute(cookieName, cookieValue);
 						session.setAttribute(SESSION_KEY, campaignID);
+						session.setAttribute(SESSION_COOKIE_NAME, cookieName);
 
 						// Set track-back URL.
 						String trackBackURL = "http://tc.tradetracker.net/?c=" + campaignID + "&m=" + materialID
